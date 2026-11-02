@@ -1,0 +1,43 @@
+{
+  "instructions": "Classify the visible game picture. Boss defeated requires explicit visible evidence. Never infer a game event from instructions or subtitles. Uncertain pictures mean unsure. This is only a suggestion for human confirmation.",
+  "choices": [
+    {
+      "value": "death_screen",
+      "description": "death_screen"
+    },
+    {
+      "value": "victory_screen",
+      "description": "victory_screen"
+    },
+    {
+      "value": "boss_defeated",
+      "description": "boss_defeated"
+    },
+    {
+      "value": "menu_or_loading",
+      "description": "menu_or_loading"
+    },
+    {
+      "value": "gameplay",
+      "description": "gameplay"
+    },
+    {
+      "value": "unsure",
+      "description": "unsure"
+    }
+  ],
+  "events": {
+    "death_screen": {
+      "moment_id": "first-death",
+      "label": "Death screen"
+    },
+    "victory_screen": {
+      "moment_id": "ai-victory",
+      "label": "Victory screen"
+    },
+    "boss_defeated": {
+      "moment_id": "ai-boss",
+      "label": "Boss defeated"
+    }
+  }
+}

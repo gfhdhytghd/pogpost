@@ -1,0 +1,107 @@
+{
+  "scope": "Real Decisions API; synthetic input only; no OBS/Twitch connection",
+  "model": "gpt-6-luna",
+  "direct_probe": {
+    "ok": true,
+    "status": 200,
+    "latency_ms": 1002,
+    "model": "gpt-6-luna",
+    "answers": [
+      {
+        "name": "visible_event",
+        "type": "choice",
+        "choice": "launch",
+        "confidence": 1
+      }
+    ],
+    "error_code": null
+  },
+  "isolated_application": {
+    "warmup": {
+      "ok": true,
+      "latency_ms": 449.3
+    },
+    "latency_ms": 173,
+    "status": "sealed",
+    "moderation": {
+      "verdict": "safe",
+      "source": "decisions",
+      "confidence": 0.77,
+      "latency_ms": 172
+    },
+    "classification": {
+      "category_id": "advice",
+      "confidence": 0.99
+    },
+    "rolling": {
+      "window": 100,
+      "samples": 1,
+      "p50_ms": 171.6,
+      "p95_ms": 171.6,
+      "fallbacks": 0,
+      "fallback_rate": 0,
+      "replay": {
+        "samples": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "fallbacks": 0,
+        "fallback_rate": null
+      },
+      "play": {
+        "samples": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "fallbacks": 0,
+        "fallback_rate": null
+      },
+      "coalesced": 0
+    },
+    "provider_status": "ready",
+    "persistent_store_used": false
+  },
+  "persistent_service": {
+    "decisions": {
+      "enabled": true,
+      "status": "ready",
+      "simulated": false,
+      "deadlines": {
+        "submissionMs": 1500,
+        "frameMs": 800
+      },
+      "concurrency": 8,
+      "in_flight": 0,
+      "pending": 0,
+      "warming": false,
+      "warmup": {
+        "ok": true,
+        "latency_ms": 300.2
+      },
+      "rolling": {
+        "window": 100,
+        "samples": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "fallbacks": 0,
+        "fallback_rate": null,
+        "replay": {
+          "samples": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "fallbacks": 0,
+          "fallback_rate": null
+        },
+        "play": {
+          "samples": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "fallbacks": 0,
+          "fallback_rate": null
+        },
+        "coalesced": 0
+      }
+    },
+    "twitch": "disabled",
+    "perception": "disabled",
+    "compiler": "disabled"
+  }
+}

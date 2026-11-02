@@ -1,0 +1,182 @@
+{
+  "standalone": {
+    "at": "2026-11-02T01:20:41.292Z",
+    "source_name": "屏幕采集(PipeWire)",
+    "definition_ids": [
+      "ksp-launch",
+      "ksp-explosion",
+      "ksp-landing",
+      "ksp-eva",
+      "ksp-flag",
+      "ksp-parachute"
+    ],
+    "capture": {
+      "configured": true,
+      "status": "ready",
+      "connected": true,
+      "in_flight": false,
+      "interval_ms": 2000,
+      "requests": 5,
+      "failures": 0,
+      "max_image_bytes": 2097152
+    },
+    "results": [
+      {
+        "frames": 2,
+        "latency_ms": 571,
+        "result": {
+          "scene": "unknown",
+          "continuity": "unknown",
+          "events": {
+            "ksp-launch": "unsure",
+            "ksp-explosion": "unsure",
+            "ksp-landing": "unsure",
+            "ksp-eva": "unsure",
+            "ksp-flag": "unsure",
+            "ksp-parachute": "unsure"
+          }
+        }
+      },
+      {
+        "frames": 2,
+        "latency_ms": 771,
+        "result": {
+          "scene": "unknown",
+          "continuity": "unknown",
+          "events": {
+            "ksp-launch": "unsure",
+            "ksp-explosion": "unsure",
+            "ksp-landing": "unsure",
+            "ksp-eva": "unsure",
+            "ksp-flag": "unsure",
+            "ksp-parachute": "unsure"
+          }
+        }
+      }
+    ],
+    "proposals": [],
+    "provider": {
+      "enabled": true,
+      "status": "ready",
+      "simulated": false,
+      "deadlines": {
+        "submissionMs": 1500,
+        "frameMs": 800
+      },
+      "concurrency": 8,
+      "in_flight": 0,
+      "pending": 0,
+      "warming": false,
+      "warmup": {
+        "ok": true,
+        "latency_ms": 440.9
+      },
+      "rolling": {
+        "window": 100,
+        "samples": 2,
+        "p50_ms": 570.4,
+        "p95_ms": 770.8,
+        "fallbacks": 0,
+        "fallback_rate": 0,
+        "replay": {
+          "samples": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "fallbacks": 0,
+          "fallback_rate": null
+        },
+        "play": {
+          "samples": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "fallbacks": 0,
+          "fallback_rate": null
+        },
+        "coalesced": 0
+      }
+    },
+    "boundary": "Live OBS and Decisions with standalone watcher; no images saved, no durable event or note changes."
+  },
+  "service": {
+    "at": "2026-11-02T01:21:36.614Z",
+    "perception": {
+      "status": "watching",
+      "profile": "generic",
+      "enabled": true,
+      "pending": 0,
+      "capture": {
+        "configured": true,
+        "status": "ready",
+        "connected": true,
+        "in_flight": false,
+        "interval_ms": 2000,
+        "requests": 9,
+        "failures": 0,
+        "max_image_bytes": 2097152
+      },
+      "watcher": {
+        "profile": "events",
+        "enabled": true,
+        "busy": false,
+        "pending": 0,
+        "needs_confirmation": true,
+        "frame_count": 1,
+        "interval_ms": 2000,
+        "definition_count": 6
+      }
+    },
+    "judgements": {
+      "enabled": true,
+      "status": "ready",
+      "simulated": false,
+      "deadlines": {
+        "submissionMs": 1500,
+        "frameMs": 800
+      },
+      "concurrency": 8,
+      "in_flight": 0,
+      "pending": 0,
+      "warming": false,
+      "warmup": {
+        "ok": true,
+        "latency_ms": 175.1
+      },
+      "rolling": {
+        "window": 100,
+        "samples": 4,
+        "p50_ms": 625.6,
+        "p95_ms": 721.5,
+        "fallbacks": 0,
+        "fallback_rate": 0,
+        "replay": {
+          "samples": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "fallbacks": 0,
+          "fallback_rate": null
+        },
+        "play": {
+          "samples": 0,
+          "p50_ms": null,
+          "p95_ms": null,
+          "fallbacks": 0,
+          "fallback_rate": null
+        },
+        "coalesced": 0
+      }
+    },
+    "twitch": {
+      "status": "disabled"
+    },
+    "definition_ids": [
+      "ksp-launch",
+      "ksp-explosion",
+      "ksp-landing",
+      "ksp-eva",
+      "ksp-flag",
+      "ksp-parachute"
+    ],
+    "pending": null,
+    "env_mode": "600"
+  }
+}

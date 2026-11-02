@@ -1,0 +1,1253 @@
+{
+  "started_at": "2026-11-02T08:00:33.972Z",
+  "scope": "offline demo, isolated Chromium",
+  "methodology": {
+    "application": "createApplication({demo:true,env:{}}), fresh in-memory fixtures; no credential/OAuth actions",
+    "themes": "Matching light/dark system media and explicit data-theme on ordinary pages; overlays intentionally retain their fixed light scheme",
+    "viewports": "Panel: 318x844; other pages: 390x844 and 1440x1000",
+    "contrast": "Visible direct core text in headings, paragraphs, labels, controls, statuses, badges and reveal metadata. Computed foreground/background colors are alpha-composited through ancestor/group opacity.",
+    "thresholds": "Ordinary text: 4.5:1; text >=24px or >=18.6667px at weight >=700: 3:1",
+    "image_handling": "Images/gradients under text remain unverified and fail the check. Tiny non-repeating select arrows wholly inside reserved right padding are excluded from the text background calculation.",
+    "exclusions": "Disabled control text, decorative icons, placeholders, hover/focus states, image text and glyph antialiasing are not contrast-certified. Theme toggle persistence and real Twitch context delivery are outside this script.",
+    "privacy": "A synthetic sealed body must not occur in visible body text or input/textarea values; this is not an exhaustive security review.",
+    "transparency": "PNG screenshots omit the browser default background; all four corner alpha values must be zero.",
+    "boundary": "This targeted browser review is not full-site WCAG conformance or Twitch/OBS/live-service acceptance."
+  },
+  "checks": [
+    {
+      "name": "light/hub: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "light/hub/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/hub/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "light/hub/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/hub/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 27
+    },
+    {
+      "name": "light/hub/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/hub/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "light/hub/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/hub/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 27
+    },
+    {
+      "name": "light/hub: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "light/console: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "light/console/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/console/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "light/console/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/console/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 111
+    },
+    {
+      "name": "light/console/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/console/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "light/console/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/console/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 111
+    },
+    {
+      "name": "light/console: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "light/archive: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "light/archive/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/archive/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "light/archive/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/archive/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 15
+    },
+    {
+      "name": "light/archive/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/archive/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "light/archive/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/archive/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 15
+    },
+    {
+      "name": "light/archive: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "light/setup: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "light/setup/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/setup/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "light/setup/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/setup/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 18
+    },
+    {
+      "name": "light/setup/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/setup/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "light/setup/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/setup/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 18
+    },
+    {
+      "name": "light/setup: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "light/panel: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "light/panel/318: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/panel/318: no horizontal overflow",
+      "passed": true,
+      "width": 318,
+      "scrollWidth": 318
+    },
+    {
+      "name": "light/panel/318: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/panel/318: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 22
+    },
+    {
+      "name": "light/panel: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "light/config: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "light/config/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/config/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "light/config/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/config/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 136
+    },
+    {
+      "name": "light/config/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/config/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "light/config/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/config/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 136
+    },
+    {
+      "name": "light/config: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "light/overlay: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "light/overlay/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/overlay/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "light/overlay/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/overlay/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 7
+    },
+    {
+      "name": "light/overlay/390: four transparent corner pixels",
+      "passed": true,
+      "alpha": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "light/overlay/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/overlay/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "light/overlay/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/overlay/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 7
+    },
+    {
+      "name": "light/overlay/1440: four transparent corner pixels",
+      "passed": true,
+      "alpha": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "light/overlay: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "light/video-overlay: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "light/video-overlay/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/video-overlay/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "light/video-overlay/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/video-overlay/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 7
+    },
+    {
+      "name": "light/video-overlay/390: four transparent corner pixels",
+      "passed": true,
+      "alpha": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "light/video-overlay/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "light/video-overlay/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "light/video-overlay/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "light/video-overlay/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 7
+    },
+    {
+      "name": "light/video-overlay/1440: four transparent corner pixels",
+      "passed": true,
+      "alpha": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "light/video-overlay: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "dark/hub: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "dark/hub/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/hub/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "dark/hub/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/hub/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 27
+    },
+    {
+      "name": "dark/hub/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/hub/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "dark/hub/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/hub/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 27
+    },
+    {
+      "name": "dark/hub: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "dark/console: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "dark/console/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/console/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "dark/console/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/console/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 111
+    },
+    {
+      "name": "dark/console/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/console/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "dark/console/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/console/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 111
+    },
+    {
+      "name": "dark/console: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "dark/archive: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "dark/archive/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/archive/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "dark/archive/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/archive/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 15
+    },
+    {
+      "name": "dark/archive/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/archive/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "dark/archive/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/archive/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 15
+    },
+    {
+      "name": "dark/archive: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "dark/setup: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "dark/setup/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/setup/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "dark/setup/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/setup/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 18
+    },
+    {
+      "name": "dark/setup/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/setup/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "dark/setup/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/setup/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 18
+    },
+    {
+      "name": "dark/setup: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "dark/panel: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "dark/panel/318: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/panel/318: no horizontal overflow",
+      "passed": true,
+      "width": 318,
+      "scrollWidth": 318
+    },
+    {
+      "name": "dark/panel/318: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/panel/318: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 22
+    },
+    {
+      "name": "dark/panel: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "dark/config: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "dark/config/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/config/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "dark/config/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/config/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 136
+    },
+    {
+      "name": "dark/config/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/config/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "dark/config/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/config/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 136
+    },
+    {
+      "name": "dark/config: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "dark/overlay: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "dark/overlay/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/overlay/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "dark/overlay/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/overlay/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 7
+    },
+    {
+      "name": "dark/overlay/390: four transparent corner pixels",
+      "passed": true,
+      "alpha": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "dark/overlay/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/overlay/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "dark/overlay/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/overlay/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 7
+    },
+    {
+      "name": "dark/overlay/1440: four transparent corner pixels",
+      "passed": true,
+      "alpha": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "dark/overlay: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "dark/video-overlay: HTTP 200",
+      "passed": true,
+      "status": 200
+    },
+    {
+      "name": "dark/video-overlay/390: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/video-overlay/390: no horizontal overflow",
+      "passed": true,
+      "width": 390,
+      "scrollWidth": 390
+    },
+    {
+      "name": "dark/video-overlay/390: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/video-overlay/390: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 7
+    },
+    {
+      "name": "dark/video-overlay/390: four transparent corner pixels",
+      "passed": true,
+      "alpha": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "dark/video-overlay/1440: visible core text",
+      "passed": true
+    },
+    {
+      "name": "dark/video-overlay/1440: no horizontal overflow",
+      "passed": true,
+      "width": 1440,
+      "scrollWidth": 1440
+    },
+    {
+      "name": "dark/video-overlay/1440: sealed fixture body stays private",
+      "passed": true
+    },
+    {
+      "name": "dark/video-overlay/1440: core text contrast",
+      "passed": true,
+      "failures": [],
+      "unverified": [],
+      "samples": 7
+    },
+    {
+      "name": "dark/video-overlay/1440: four transparent corner pixels",
+      "passed": true,
+      "alpha": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "dark/video-overlay: no unhandled page errors",
+      "passed": true,
+      "errors": []
+    },
+    {
+      "name": "All browser requests remain on the isolated loopback app",
+      "passed": true,
+      "external": []
+    }
+  ],
+  "issues": [],
+  "external": [],
+  "screenshots": [
+    "m3-review-light-hub-390.png",
+    "m3-review-light-hub-1440.png",
+    "m3-review-light-console-390.png",
+    "m3-review-light-events-390.png",
+    "m3-review-light-console-1440.png",
+    "m3-review-light-events-1440.png",
+    "m3-review-light-panel-318.png",
+    "m3-review-light-overlay-390-alpha.png",
+    "m3-review-light-overlay-1440-alpha.png",
+    "m3-review-light-video-overlay-390-alpha.png",
+    "m3-review-light-video-overlay-1440-alpha.png",
+    "m3-review-dark-hub-390.png",
+    "m3-review-dark-hub-1440.png",
+    "m3-review-dark-console-390.png",
+    "m3-review-dark-events-390.png",
+    "m3-review-dark-console-1440.png",
+    "m3-review-dark-events-1440.png",
+    "m3-review-dark-panel-318.png",
+    "m3-review-dark-overlay-390-alpha.png",
+    "m3-review-dark-overlay-1440-alpha.png",
+    "m3-review-dark-video-overlay-390-alpha.png",
+    "m3-review-dark-video-overlay-1440-alpha.png"
+  ],
+  "pages": [
+    {
+      "theme": "light",
+      "surface": "hub",
+      "width": 390,
+      "contrast_samples": 27,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(254, 247, 255)",
+      "body_background": "rgb(254, 247, 255)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "hub",
+      "width": 1440,
+      "contrast_samples": 27,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(254, 247, 255)",
+      "body_background": "rgb(254, 247, 255)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "console",
+      "width": 390,
+      "contrast_samples": 111,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(254, 247, 255)",
+      "body_background": "rgb(254, 247, 255)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "console",
+      "width": 1440,
+      "contrast_samples": 111,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(254, 247, 255)",
+      "body_background": "rgb(254, 247, 255)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "archive",
+      "width": 390,
+      "contrast_samples": 15,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(254, 247, 255)",
+      "body_background": "rgb(254, 247, 255)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "archive",
+      "width": 1440,
+      "contrast_samples": 15,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(254, 247, 255)",
+      "body_background": "rgb(254, 247, 255)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "setup",
+      "width": 390,
+      "contrast_samples": 18,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(254, 247, 255)",
+      "body_background": "rgb(254, 247, 255)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "setup",
+      "width": 1440,
+      "contrast_samples": 18,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(254, 247, 255)",
+      "body_background": "rgb(254, 247, 255)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "panel",
+      "width": 318,
+      "contrast_samples": 22,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(230, 234, 242)",
+      "body_background": "rgb(230, 234, 242)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "config",
+      "width": 390,
+      "contrast_samples": 136,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(254, 247, 255)",
+      "body_background": "rgb(254, 247, 255)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "config",
+      "width": 1440,
+      "contrast_samples": 136,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(254, 247, 255)",
+      "body_background": "rgb(254, 247, 255)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "overlay",
+      "width": 390,
+      "contrast_samples": 7,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgba(0, 0, 0, 0)",
+      "body_background": "rgba(0, 0, 0, 0)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "overlay",
+      "width": 1440,
+      "contrast_samples": 7,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgba(0, 0, 0, 0)",
+      "body_background": "rgba(0, 0, 0, 0)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "video-overlay",
+      "width": 390,
+      "contrast_samples": 7,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgba(0, 0, 0, 0)",
+      "body_background": "rgba(0, 0, 0, 0)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "light",
+      "surface": "video-overlay",
+      "width": 1440,
+      "contrast_samples": 7,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgba(0, 0, 0, 0)",
+      "body_background": "rgba(0, 0, 0, 0)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "dark",
+      "surface": "hub",
+      "width": 390,
+      "contrast_samples": 27,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(20, 18, 24)",
+      "body_background": "rgb(20, 18, 24)",
+      "color_scheme": "dark"
+    },
+    {
+      "theme": "dark",
+      "surface": "hub",
+      "width": 1440,
+      "contrast_samples": 27,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(20, 18, 24)",
+      "body_background": "rgb(20, 18, 24)",
+      "color_scheme": "dark"
+    },
+    {
+      "theme": "dark",
+      "surface": "console",
+      "width": 390,
+      "contrast_samples": 111,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(20, 18, 24)",
+      "body_background": "rgb(20, 18, 24)",
+      "color_scheme": "dark"
+    },
+    {
+      "theme": "dark",
+      "surface": "console",
+      "width": 1440,
+      "contrast_samples": 111,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(20, 18, 24)",
+      "body_background": "rgb(20, 18, 24)",
+      "color_scheme": "dark"
+    },
+    {
+      "theme": "dark",
+      "surface": "archive",
+      "width": 390,
+      "contrast_samples": 15,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(20, 18, 24)",
+      "body_background": "rgb(20, 18, 24)",
+      "color_scheme": "dark"
+    },
+    {
+      "theme": "dark",
+      "surface": "archive",
+      "width": 1440,
+      "contrast_samples": 15,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(20, 18, 24)",
+      "body_background": "rgb(20, 18, 24)",
+      "color_scheme": "dark"
+    },
+    {
+      "theme": "dark",
+      "surface": "setup",
+      "width": 390,
+      "contrast_samples": 18,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(20, 18, 24)",
+      "body_background": "rgb(20, 18, 24)",
+      "color_scheme": "dark"
+    },
+    {
+      "theme": "dark",
+      "surface": "setup",
+      "width": 1440,
+      "contrast_samples": 18,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(20, 18, 24)",
+      "body_background": "rgb(20, 18, 24)",
+      "color_scheme": "dark"
+    },
+    {
+      "theme": "dark",
+      "surface": "panel",
+      "width": 318,
+      "contrast_samples": 22,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(16, 20, 42)",
+      "body_background": "rgb(16, 20, 42)",
+      "color_scheme": "dark"
+    },
+    {
+      "theme": "dark",
+      "surface": "config",
+      "width": 390,
+      "contrast_samples": 136,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(20, 18, 24)",
+      "body_background": "rgb(20, 18, 24)",
+      "color_scheme": "dark"
+    },
+    {
+      "theme": "dark",
+      "surface": "config",
+      "width": 1440,
+      "contrast_samples": 136,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgb(20, 18, 24)",
+      "body_background": "rgb(20, 18, 24)",
+      "color_scheme": "dark"
+    },
+    {
+      "theme": "dark",
+      "surface": "overlay",
+      "width": 390,
+      "contrast_samples": 7,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgba(0, 0, 0, 0)",
+      "body_background": "rgba(0, 0, 0, 0)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "dark",
+      "surface": "overlay",
+      "width": 1440,
+      "contrast_samples": 7,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgba(0, 0, 0, 0)",
+      "body_background": "rgba(0, 0, 0, 0)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "dark",
+      "surface": "video-overlay",
+      "width": 390,
+      "contrast_samples": 7,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgba(0, 0, 0, 0)",
+      "body_background": "rgba(0, 0, 0, 0)",
+      "color_scheme": "light"
+    },
+    {
+      "theme": "dark",
+      "surface": "video-overlay",
+      "width": 1440,
+      "contrast_samples": 7,
+      "contrast_failures": [],
+      "contrast_unverified": [],
+      "root_background": "rgba(0, 0, 0, 0)",
+      "body_background": "rgba(0, 0, 0, 0)",
+      "color_scheme": "light"
+    }
+  ],
+  "completed_at": "2026-11-02T08:00:45.131Z",
+  "passed": true
+}

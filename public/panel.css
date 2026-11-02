@@ -1,0 +1,170 @@
+/* Sealed Notes · viewer panel. Airmail stationery: a letter sheet inside a striped
+   airmail edge, rubber-stamp states, a wax seal on the send button. Independent of styles.css. */
+@font-face{font-family:'Fraunces';src:url(fraunces.woff2) format('woff2');font-weight:300 800;font-style:normal;font-display:swap}
+@font-face{font-family:'Fraunces';src:url(fraunces-italic.woff2) format('woff2');font-weight:300 800;font-style:italic;font-display:swap}
+@font-face{font-family:'Instrument Sans';src:url(instrument-sans.woff2) format('woff2');font-weight:400 700;font-display:swap}
+
+:root{
+  color-scheme:light;
+  --mist:#e6eaf2;          /* page: airmail mist */
+  --paper:#fdfcf8;         /* letter sheet */
+  --paper-2:#f3f4f8;       /* quiet fields */
+  --ink:#1c2238;           /* navy ink */
+  --ink-soft:#4a5170;
+  --rule:#c6cddd;
+  --red:#b02e38;           /* airmail red */
+  --blue:#2a4599;          /* airmail blue */
+  --wax:#a3242f;
+  --on-wax:#fff;
+  --amber:#8a5a00;
+  --serif:'Fraunces',Georgia,serif;
+  --sans:'Instrument Sans',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --mist:#10142a;--paper:#1b2140;--paper-2:#232a4d;--ink:#eceef7;--ink-soft:#b0b7d2;--rule:#3a4370;
+    --red:#ff8d92;--blue:#a3b8ff;--wax:#c23a46;--on-wax:#fff;--amber:#f2c063;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --mist:#10142a;--paper:#1b2140;--paper-2:#232a4d;--ink:#eceef7;--ink-soft:#b0b7d2;--rule:#3a4370;
+  --red:#ff8d92;--blue:#a3b8ff;--wax:#c23a46;--on-wax:#fff;--amber:#f2c063;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0}
+[hidden]{display:none!important}
+html{background:var(--mist)}
+body{min-height:100vh;background:var(--mist);color:var(--ink);font:400 14px/1.45 var(--sans);-webkit-font-smoothing:antialiased;overflow-wrap:anywhere}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+
+/* ——— Header ——— */
+.topbar{display:flex;align-items:center;gap:8px;padding:10px 12px 0;max-width:960px;margin:0 auto}
+.brand{display:inline-flex;align-items:center;gap:6px;margin-right:auto;font:600 15px/1 var(--serif);letter-spacing:.01em}
+.brand-seal{width:16px;height:16px;fill:var(--wax)}
+.sealed-count{padding:3px 9px;border:1px solid var(--rule);border-radius:999px;background:var(--paper);font-size:12px;font-variant-numeric:tabular-nums;color:var(--ink-soft)}
+.icon-button{display:inline-grid;place-items:center;width:32px;height:32px;padding:0;border:0;border-radius:50%;background:transparent;color:var(--ink-soft);cursor:pointer}
+.icon-button:hover{background:var(--paper)}
+.icon-button svg{width:18px;height:18px}
+
+.desk{max-width:960px;margin:0 auto;padding:6px 12px 20px}
+.lede{margin:2px 0 12px;font:italic 400 14px/1.35 var(--serif);color:var(--ink-soft)}
+
+/* ——— Tabs: two envelope tabs on a rule ——— */
+.tabs{display:flex;gap:4px;border-bottom:1px solid var(--rule);margin-bottom:12px}
+.tab{position:relative;display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:0 12px;border:0;background:transparent;color:var(--ink-soft);font-weight:600;font-size:13px;cursor:pointer}
+.tab[aria-selected="true"]{color:var(--ink)}
+.tab[aria-selected="true"]::after{content:'';position:absolute;left:8px;right:8px;bottom:-1px;height:3px;border-radius:3px 3px 0 0;background:var(--red)}
+.tab-count{min-width:18px;padding:0 5px;border-radius:999px;background:var(--paper-2);color:var(--ink);font-size:11px;line-height:18px;text-align:center}
+
+/* ——— The letter: airmail stripes around a paper sheet ——— */
+.compose{display:grid;gap:14px}
+.letter{padding:5px;border-radius:8px;
+  background:repeating-linear-gradient(135deg,var(--red) 0 9px,var(--paper) 9px 14px,var(--blue) 14px 23px,var(--paper) 23px 28px)}
+.sheet{display:grid;gap:6px;padding:12px 12px 10px;border-radius:4px;background:var(--paper)}
+.sheet-label{font:600 15px/1.25 var(--serif)}
+#note-body{width:100%;min-height:96px;padding:8px 2px;border:0;border-bottom:1px dashed var(--rule);background:var(--paper);resize:vertical;font:italic 400 17px/1.5 var(--serif)}
+#note-body::placeholder{color:var(--ink-soft);opacity:.8}
+#note-body:focus-visible{outline:none;border-bottom:2px solid var(--blue)}
+.sheet-foot{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--ink-soft)}
+.char-counter{font-variant-numeric:tabular-nums;white-space:nowrap}
+.char-counter.near{color:var(--amber);font-weight:600}
+
+/* ——— Routing: everything that says where and how it travels ——— */
+.routing{display:grid;gap:12px}
+.field{display:grid;gap:4px;min-width:0;border:0;padding:0}
+.field-label,legend{font-size:12px;font-weight:600;color:var(--ink-soft)}
+legend{margin-bottom:6px;padding:0}
+select,input:not([type="checkbox"]){width:100%;min-height:38px;padding:7px 10px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);color:var(--ink)}
+select{appearance:none;padding-right:34px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3E%3Cpath d='M0 2h8L4 7z' fill='%237a819e'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:8px 8px}
+select:disabled,input:disabled{opacity:.55}
+
+.category-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
+.category-button{--category:#b8acf0;position:relative;display:grid;grid-template-columns:16px minmax(0,1fr);column-gap:6px;align-items:start;min-height:44px;padding:8px 6px 8px 11px;border:1px solid var(--rule);border-radius:6px;background:var(--paper);text-align:left;cursor:pointer;overflow:hidden}
+.category-button::before{content:'';position:absolute;inset:0 auto 0 0;width:4px;background:var(--category)}
+.category-button[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.category-icon{width:16px;height:16px;margin-top:1px;display:grid;place-items:center;border-radius:50%;background:var(--category);color:#1c2238;font-size:9px;line-height:1}
+/* Names are single words; never break inside them. */
+.category-button span:not(.category-icon){display:grid;gap:1px;font-weight:600;font-size:12.5px;line-height:1.25;overflow-wrap:normal;word-break:normal;hyphens:none}
+.category-option-description{font-weight:400;font-size:11.5px;color:var(--ink-soft)}
+.envelopes>.hint{font-size:12.5px}
+
+.more{border-top:1px dashed var(--rule);padding-top:8px}
+.more summary{cursor:pointer;font-size:12.5px;font-weight:600;color:var(--blue);list-style-position:inside}
+.more-body{display:grid;gap:8px;padding-top:8px}
+.condition-grid{grid-template-columns:repeat(auto-fit,minmax(128px,1fr))}
+.hint{font-size:12px;color:var(--ink-soft)}
+.hint.error{color:var(--red)}
+
+.quiet{justify-self:start;min-height:32px;padding:0 12px;border:1px solid var(--rule);border-radius:999px;background:var(--paper);color:var(--blue);font-size:12.5px;font-weight:600;cursor:pointer}
+.quiet:disabled{opacity:.55;cursor:default}
+
+.postage{display:grid;gap:4px;padding:10px;border:1px dashed var(--rule);border-radius:6px;background:var(--paper-2)}
+.postage select{background-color:var(--paper)}
+.wallet{font-size:12px;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+.test-mode{justify-self:start;padding:1px 7px;border:1.5px solid var(--red);border-radius:3px;background:var(--paper);color:var(--red);font-size:11px;font-weight:700;letter-spacing:.02em;transform:rotate(-1.5deg)}
+
+.identity{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.check{display:inline-flex;align-items:center;gap:8px;font-size:13px;cursor:pointer}
+.check input{width:16px;height:16px;accent-color:var(--blue)}
+
+.seal{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:46px;padding:0 16px;border:0;border-radius:999px;background:var(--wax);color:var(--on-wax);font:600 16px/1 var(--serif);letter-spacing:.01em;cursor:pointer;box-shadow:0 2px 0 color-mix(in srgb,var(--wax) 60%,#000)}
+.seal:hover{filter:brightness(1.06)}
+.seal:active{transform:translateY(1px);box-shadow:none}
+.seal:disabled{opacity:.6;cursor:progress}
+.seal-wax{width:22px;height:22px;fill:color-mix(in srgb,var(--on-wax) 85%,var(--wax))}
+
+/* ——— Receipt: a postmark on the sealed envelope ——— */
+.receipt{--stamp:var(--blue);position:relative;display:grid;gap:2px;margin-bottom:12px;padding:12px 12px 12px 70px;border:1px solid var(--rule);border-radius:8px;background:var(--paper)}
+.receipt::before{content:'';position:absolute;left:12px;top:12px;width:46px;height:46px;border-radius:50%;border:2px dashed var(--stamp);
+  background:radial-gradient(circle,var(--stamp) 0 9px,transparent 10px)}
+.receipt[data-state="held"]{--stamp:var(--amber)}
+.receipt[data-state="rejected"]{--stamp:var(--red)}
+.receipt strong{font:600 16px/1.25 var(--serif);color:var(--ink)}
+.receipt p{font-size:12.5px;color:var(--ink-soft)}
+.receipt p:first-of-type{color:var(--ink)}
+.receipt{min-height:72px}
+
+/* ——— Your notes: envelopes with rubber stamps ——— */
+.note-list{display:grid;gap:8px;padding:0;list-style:none}
+.note-item{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 10px;align-items:start;padding:10px 12px;border:1px solid var(--rule);border-left:4px solid var(--category,var(--rule));border-radius:6px;background:var(--paper)}
+.note-item strong{font:600 14px/1.3 var(--serif)}
+.note-item p{font-size:12px;color:var(--ink-soft)}
+.note-opened{grid-column:1/-1;padding:8px 10px;border-radius:4px;background:var(--paper-2);font:italic 400 14px/1.45 var(--serif);color:var(--ink)}
+.stamp{--stamp:var(--ink-soft);padding:1px 7px;border:1.5px solid var(--stamp);border-radius:3px;color:var(--stamp);font-size:11px;font-weight:700;white-space:nowrap;transform:rotate(-2deg)}
+.stamp[data-status="sealed"]{--stamp:var(--blue)}
+.stamp[data-status="revealed"]{--stamp:var(--ink)}
+.stamp[data-status="held"],.stamp[data-status="pending_review"]{--stamp:var(--amber)}
+.stamp[data-status="rejected"]{--stamp:var(--red)}
+.empty{padding:20px 12px;border:1px dashed var(--rule);border-radius:8px;background:var(--paper);text-align:center;font:italic 400 14px/1.4 var(--serif);color:var(--ink-soft)}
+
+.status{margin-top:12px;font-size:12.5px;color:var(--ink-soft)}
+.status.error{color:var(--red);font-weight:600}
+
+.toast{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;padding:12px 14px;border-radius:8px;background:var(--ink);color:var(--paper);box-shadow:0 6px 20px rgb(0 0 0 / .25)}
+.toast strong{display:block;font:600 15px/1.3 var(--serif)}
+.toast p{font-size:12.5px;opacity:.85}
+
+/* ——— Watch: the stream's envelopes in a read-only frame ——— */
+.watch{display:grid;gap:8px}
+.watch-note{font-size:12.5px;color:var(--ink-soft)}
+.watch-stage{position:relative;height:clamp(280px,64vh,460px);overflow:hidden;border-radius:8px;border:1px solid var(--rule);background:linear-gradient(165deg,#3d4660,#1a1f33)}
+.watch-stage iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:transparent;color-scheme:light}
+
+/* ——— Wide: letter on the left, routing on the right ——— */
+@media (min-width:720px){
+  .topbar,.desk{padding-left:24px;padding-right:24px}
+  .lede{font-size:16px}
+  .compose{grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:24px;align-items:start}
+  .letter{position:sticky;top:12px}
+  .sheet{padding:18px 18px 12px}
+  #note-body{min-height:220px;font-size:20px}
+  .receipt,.notes{max-width:640px}
+  .watch{max-width:960px}
+  .watch-stage{height:auto;aspect-ratio:16/9}
+  .toast{left:auto;right:24px;bottom:24px;max-width:360px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}

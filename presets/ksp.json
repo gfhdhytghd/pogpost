@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "events": [
+    {
+      "id": "ksp-launch",
+      "label": "Launch",
+      "description": "A vessel visibly lifts off the surface, or climbs under thrust close to the launch pad. Clear separation from the ground and a powered ascent are sufficient for a suggestion. Engine exhaust on a stationary craft, a menu or a loading screen is not launch.",
+      "mode": "instant",
+      "min_confidence": 0.85,
+      "cooldown_s": 30,
+      "auto_confirm": false
+    },
+    {
+      "id": "ksp-explosion",
+      "label": "Destructive explosion",
+      "description": "A visible explosion destroys a vessel or its parts. Require destructive blast or breakup evidence. Normal engine exhaust, planned staging, smoke alone, and a scene transition do not establish destruction.",
+      "mode": "instant",
+      "min_confidence": 0.85,
+      "cooldown_s": 30,
+      "auto_confirm": false
+    },
+    {
+      "id": "ksp-landing",
+      "label": "Landing",
+      "description": "A vessel visibly touches down or rests intact in clear contact with terrain after flight. Stable surface contact is sufficient for a landing suggestion; the operator confirms whether it is new. Low altitude alone, menus and map icons are not landing.",
+      "mode": "instant",
+      "min_confidence": 0.85,
+      "cooldown_s": 30,
+      "auto_confirm": false
+    },
+    {
+      "id": "ksp-eva",
+      "label": "Spacewalk / EVA",
+      "description": "A recognizable suited Kerbal is visibly outside the vessel in the flight world view. A clear outside Kerbal is sufficient for an EVA suggestion; the operator confirms whether it is new. Portraits, editor previews and menu text are not EVA evidence.",
+      "mode": "instant",
+      "min_confidence": 0.85,
+      "cooldown_s": 30,
+      "auto_confirm": false
+    },
+    {
+      "id": "ksp-flag",
+      "label": "Flag planting",
+      "description": "A recognizable planted flag stands on terrain near a Kerbal, or visible flag planting occurs. A clear planted flag is sufficient for a suggestion; the operator confirms whether it is new. Map markers, menu icons and decorative flags are not evidence.",
+      "mode": "instant",
+      "min_confidence": 0.85,
+      "cooldown_s": 30,
+      "auto_confirm": false
+    },
+    {
+      "id": "ksp-parachute",
+      "label": "Parachute deployment",
+      "description": "A clearly open or opening parachute canopy is attached to the vessel or Kerbal by suspension lines. Visible deployment is sufficient for a suggestion; the operator confirms whether it is new. Packed parts, icons and staging indicators are not evidence.",
+      "mode": "instant",
+      "min_confidence": 0.85,
+      "cooldown_s": 30,
+      "auto_confirm": false
+    }
+  ]
+}

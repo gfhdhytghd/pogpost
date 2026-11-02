@@ -1,0 +1,35 @@
+{
+  "at": "2026-11-02T03:04:17.218Z",
+  "debug_enabled": true,
+  "stats": {
+    "frames": 0,
+    "bytes": 0,
+    "metadata_bytes": 210,
+    "requests": 0,
+    "decisions": 0,
+    "total_frames": 0,
+    "expired_frames": 0,
+    "dropped_frames": 0,
+    "expired_requests": 0,
+    "expired_decisions": 0,
+    "storage_errors": 0,
+    "pending_writes": 0
+  },
+  "limits": {
+    "max_frames": 5000,
+    "max_bytes": 536870912,
+    "max_requests": 5000,
+    "max_decisions": 10000,
+    "max_metadata_bytes": 33554432
+  },
+  "perception": {
+    "status": "disabled",
+    "profile": null,
+    "enabled": false,
+    "pending": 0
+  },
+  "private_permissions": {
+    "directory": "700",
+    "index": "600"
+  }
+}

@@ -1,0 +1,22 @@
+# Replace domain, certificate paths and relay listener port before use.
+server {
+    listen 443 ssl;
+    server_name NOTES_DOMAIN;
+    ssl_certificate /etc/letsencrypt/live/NOTES_DOMAIN/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/NOTES_DOMAIN/privkey.pem;
+    client_max_body_size 32k;
+
+    # No generic proxy fallback. These are the only public routes.
+    location ~ ^/(ebs/(state|quote|notes|config|events|compile)|archive|api/archive|panel\.html|video_overlay\.html|config\.html|client-config\.js|styles\.css|fraunces\.woff2|fraunces-italic\.woff2|instrument-sans\.woff2|caveat\.woff2|common\.js|panel\.js|config\.js|video_overlay\.js|archive\.js)$ {
+        proxy_pass http://127.0.0.1:NEW_NPS_RELAY_PORT;
+        proxy_http_version 1.1;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Proto https;
+        proxy_set_header Upgrade "";
+        proxy_set_header Connection "";
+        proxy_read_timeout 5s;
+    }
+    location / { return 404; }
+}

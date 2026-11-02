@@ -1,0 +1,43 @@
+{
+  "name": "sealed-notes",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24.0.0"
+  },
+  "scripts": {
+    "start": "node server/index.js",
+    "demo": "node server/index.js --demo",
+    "test": "node --test test/*.test.js",
+    "test:browser": "node test/browser.mjs",
+    "twitch:auth": "node server/twitch-auth.js",
+    "ext:zip": "node tools/package-extension.mjs",
+    "doctor": "node tools/doctor.mjs",
+    "deploy:prepare": "node tools/prepare-deploy.mjs",
+    "bundle": "node tools/bundle-source.mjs",
+    "video:demo": "node tools/record-demo.mjs",
+    "tunnel": "node tools/nps-tunnel.mjs",
+    "test:auth-browser": "node test/private-auth-browser.mjs",
+    "test:ksp": "node --test test/ksp*.test.js test/obs-observation.test.js",
+    "test:ksp-browser": "node test/ksp-browser.mjs",
+    "test:events": "node --test test/event*.test.js test/adaptive-event-watcher.test.js test/visual-config.test.js test/ksp*.test.js test/obs-observation.test.js",
+    "test:events-browser": "node test/events-browser.mjs",
+    "test:material3-browser": "node test/material3-browser.mjs",
+    "test:moments-browser": "node test/moments-browser.mjs",
+    "test:debug": "node --test test/debug-*.test.js",
+    "test:debug-browser": "node test/debug-browser.mjs",
+    "test:perception-browser": "node test/perception-browser.mjs",
+    "test:operator-controls-browser": "node test/operator-controls-browser.mjs",
+    "test:panel-redesign-browser": "node test/panel-redesign-browser.mjs",
+    "test:overlay-browser": "node test/overlay-browser.mjs",
+    "test:stage-layout-browser": "node test/stage-layout-browser.mjs",
+    "test:physics-browser": "node test/rope-physics-browser.mjs"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "playwright-core": "^1.56.0"
+  }
+}

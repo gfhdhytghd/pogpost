@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>Private extension setup · Sealed Notes</title>
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./common.js"></script>
+  <script type="module" src="./setup.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="/"><span class="brand-mark"></span>Sealed Notes</a>
+    <a href="/console">Operator desk</a>
+  </header>
+  <main class="shell stack">
+    <div class="page-heading"><div>
+      <h1>Private extension setup</h1>
+      <p>Save credentials for your new Hosted Test extension on this computer.</p>
+    </div></div>
+    <section class="notice stack">
+      <p>Use the new Sealed Notes extension registration. Leave empty fields unchanged.</p>
+      <p>Saving does not restart the server or connect to Twitch. Provider features and real payments stay disabled in the saved configuration.</p>
+      <p>After setup, restart the server yourself when you are ready to use the saved configuration.</p>
+    </section>
+    <section class="card stack" aria-labelledby="credentials-title">
+      <h2 id="credentials-title">Extension credentials</h2>
+      <p class="small muted">Existing values are never displayed. A status shows only whether a valid value is saved.</p>
+      <form id="credentials-form" class="stack" autocomplete="off">
+        <fieldset id="credentials-fields" class="stack" disabled>
+          <label for="extension-client-id">Extension client ID
+            <input id="extension-client-id" name="TWITCH_EXT_CLIENT_ID" autocomplete="off" spellcheck="false" maxlength="128" pattern="[A-Za-z0-9]+">
+            <span id="present-client" class="small muted">Not checked</span>
+          </label>
+          <label for="extension-secret">Extension secret
+            <input id="extension-secret" name="TWITCH_EXT_SECRET" type="password" autocomplete="off" spellcheck="false" maxlength="4096" aria-describedby="secret-help present-secret">
+            <span id="secret-help" class="small muted">Paste the base64 extension secret. This field clears after every save attempt.</span>
+            <span id="present-secret" class="small muted">Not checked</span>
+          </label>
+          <div class="field-grid">
+            <label for="extension-owner-id">Extension owner user ID
+              <input id="extension-owner-id" name="TWITCH_EXT_OWNER_ID" inputmode="numeric" autocomplete="off" maxlength="30" pattern="[0-9]+">
+              <span id="present-owner" class="small muted">Not checked</span>
+            </label>
+            <label for="broadcaster-id">Broadcaster user ID
+              <input id="broadcaster-id" name="TWITCH_BROADCASTER_ID" inputmode="numeric" autocomplete="off" maxlength="30" pattern="[0-9]+">
+              <span id="present-broadcaster" class="small muted">Not checked</span>
+            </label>
+          </div>
+          <div><button id="save-credentials" class="primary" type="submit">Save privately</button></div>
+        </fieldset>
+      </form>
+      <p id="setup-status" class="status" role="status" aria-live="polite">Checking local setup access…</p>
+    </section>
+    <section class="card stack" aria-labelledby="authorization-title">
+      <h2 id="authorization-title">Authorize broadcaster</h2>
+      <p class="small muted">Authorize chat reading and follower events for the broadcaster account. This does not grant chat sending, payments, or broadcasting.</p>
+      <p class="small muted">Start authorization here, then enter the private code on Twitch. Tokens are saved privately on this computer.</p>
+      <div><button id="start-twitch-auth" class="primary" type="button" disabled>Start Twitch authorization</button></div>
+      <div id="device-auth-details" class="stack" hidden>
+        <label for="device-user-code">Private Twitch activation code
+          <input id="device-user-code" type="password" readonly autocomplete="off" spellcheck="false" aria-describedby="device-code-help">
+          <span id="device-code-help" class="small muted">The code stays masked here. Enter this code only on the Twitch activation page.</span>
+        </label>
+        <div class="row"><button id="copy-device-code" class="secondary" type="button" disabled>Copy activation code</button><button id="toggle-device-code" class="secondary" type="button" aria-controls="device-user-code" aria-pressed="false" disabled>Show activation code</button><a id="twitch-activation-link" class="button secondary" target="_blank" rel="noopener noreferrer" hidden>Open Twitch activation</a></div>
+      </div>
+      <p id="twitch-auth-status" class="status" role="status" aria-live="polite">Checking local authorization access…</p>
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,81 @@
+{
+  "at": "2026-11-02T01:34:20.872Z",
+  "perception": {
+    "status": "watching",
+    "profile": "generic",
+    "enabled": true,
+    "pending": 0,
+    "capture": {
+      "configured": true,
+      "status": "ready",
+      "connected": true,
+      "in_flight": false,
+      "interval_ms": 200,
+      "width": 640,
+      "height": 360,
+      "requests": 41,
+      "failures": 0,
+      "max_image_bytes": 2097152
+    },
+    "watcher": {
+      "profile": "events",
+      "enabled": true,
+      "busy": true,
+      "pending": 0,
+      "needs_confirmation": true,
+      "frame_count": 5,
+      "interval_ms": 200,
+      "definition_count": 6,
+      "strategy": "single_then_window",
+      "capture_hz": 5,
+      "screen_interval_ms": 1000,
+      "review_frames": 5,
+      "review_confidence": 0.6,
+      "screen_requests": 6,
+      "review_requests": 0
+    }
+  },
+  "judgements": {
+    "enabled": true,
+    "status": "ready",
+    "simulated": false,
+    "deadlines": {
+      "submissionMs": 1500,
+      "frameMs": 800
+    },
+    "concurrency": 8,
+    "in_flight": 1,
+    "pending": 0,
+    "warming": false,
+    "warmup": {
+      "ok": true,
+      "latency_ms": 210
+    },
+    "rolling": {
+      "window": 100,
+      "samples": 5,
+      "p50_ms": 395.2,
+      "p95_ms": 588.6,
+      "fallbacks": 0,
+      "fallback_rate": 0,
+      "replay": {
+        "samples": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "fallbacks": 0,
+        "fallback_rate": null
+      },
+      "play": {
+        "samples": 0,
+        "p50_ms": null,
+        "p95_ms": null,
+        "fallbacks": 0,
+        "fallback_rate": null
+      },
+      "coalesced": 0
+    }
+  },
+  "twitch": {
+    "status": "disabled"
+  }
+}

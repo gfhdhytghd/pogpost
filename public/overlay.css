@@ -1,0 +1,164 @@
+/* Sealed Notes · OBS overlay. A twine washing line of airmail envelopes over a transparent
+   canvas. Sizes come from JS as px custom properties (--ew envelope width, --lw letter width). */
+@font-face{font-family:'Caveat';src:url(caveat.woff2) format('woff2');font-weight:400 700;font-display:block}
+@font-face{font-family:'Fraunces';src:url(fraunces.woff2) format('woff2');font-weight:300 800;font-display:block}
+@font-face{font-family:'Fraunces';src:url(fraunces-italic.woff2) format('woff2');font-weight:300 800;font-style:italic;font-display:block}
+@font-face{font-family:'Instrument Sans';src:url(instrument-sans.woff2) format('woff2');font-weight:400 700;font-display:block}
+
+:root{
+  color-scheme:light;
+  --ew:160px; --lw:560px; --u:10px;
+  --paper:#f7f2e6; --paper-back:#eee5d0; --paper-deep:#e2d6bb; --fold:#d3c4a3;
+  --ink:#2b2433; --ink-soft:#5a5163;
+  --red:#b02e38; --blue:#2a4599;
+  --twine:#d6b47e; --twine-dark:#8f6a3a;
+  --wood:#d9b27c; --wood-dark:#a87c45;
+  --kraft:#c99c68; --kraft-ink:#2e2216;
+  --hand:'Caveat','Segoe Print',cursive; --serif:'Fraunces',Georgia,serif; --sans:'Instrument Sans',system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+*{margin:0;padding:0}
+[hidden]{display:none!important}
+html,body{width:100%;height:100%;overflow:hidden;background:transparent}
+body{color:var(--ink);font:400 14px/1.4 var(--sans);-webkit-font-smoothing:antialiased}
+
+/* ——— The washing line ——— */
+.line{position:fixed;inset:0;pointer-events:none}
+.twine{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.twine path{fill:none;stroke-linecap:round}
+.twine-shadow{stroke:rgb(0 0 0 / .32);stroke-width:calc(var(--u) * .5 + 2px);transform:translateY(2px)}
+.twine-rope{stroke:var(--twine);stroke-width:calc(var(--u) * .3 + 1.2px)}
+.twine-twist{stroke:var(--twine-dark);stroke-width:calc(var(--u) * .12 + .6px);stroke-dasharray:calc(var(--u) * .35 + 2px) calc(var(--u) * .45 + 3px);opacity:.55}
+.envelopes{list-style:none}
+.twine-knot{fill:var(--twine-dark);stroke:var(--twine);stroke-width:1.5px}
+
+/* Layout editing (operator preview only): a grab handle on each end of the rope. */
+.rope-handle{position:fixed;z-index:25;width:44px;height:44px;margin:-22px 0 0 -22px;border:3px solid var(--paper);border-radius:50%;
+  background:radial-gradient(circle,var(--blue) 0 7px,rgb(42 69 153 / .35) 8px);box-shadow:0 2px 8px rgb(0 0 0 / .45);cursor:grab;touch-action:none;pointer-events:auto}
+.rope-handle.dragging{cursor:grabbing;background:radial-gradient(circle,var(--red) 0 8px,rgb(176 46 56 / .35) 9px)}
+.rope-handle:focus-visible{outline:3px solid var(--paper);outline-offset:3px;box-shadow:0 0 0 7px var(--blue)}
+.editing .twine-rope{stroke-dasharray:none}
+
+/* One hanging envelope. The rope simulation writes its transform (pin position and rope angle)
+   and the swing's rotation (pendulum angle) every frame; there is no CSS animation. */
+.hang{position:absolute;left:0;top:0;width:var(--ew);margin-left:calc(var(--ew) / -2);transform-origin:50% 0;will-change:transform}
+.swing{position:relative;transform-origin:50% 0}
+
+/* Wooden clothespin, clipped over the top edge of the envelope. */
+.pin{position:absolute;z-index:2;left:50%;top:calc(var(--ew) * -.075);width:calc(var(--ew) * .085);height:calc(var(--ew) * .3);margin-left:calc(var(--ew) * -.0425);
+  border-radius:calc(var(--ew) * .02);background:linear-gradient(90deg,var(--wood-dark),var(--wood) 30%,#ecd2a6 50%,var(--wood) 70%,var(--wood-dark));
+  box-shadow:0 2px 4px rgb(0 0 0 / .35)}
+.pin::before{content:'';position:absolute;left:-12%;right:-12%;top:38%;height:9%;border-radius:2px;background:linear-gradient(#cfd3da,#7d838d);box-shadow:0 1px 1px rgb(0 0 0 / .35)}
+.pin::after{content:'';position:absolute;left:47%;top:0;bottom:0;width:6%;background:rgb(0 0 0 / .22)}
+
+/* ——— Envelope faces ——— */
+.env{position:relative;width:100%;aspect-ratio:1.55;border-radius:calc(var(--ew) * .025);
+  filter:drop-shadow(0 calc(var(--ew) * .03) calc(var(--ew) * .04) rgb(0 0 0 / .38))}
+.env-front{position:absolute;inset:0;border-radius:inherit;padding:calc(var(--ew) * .028);
+  background:repeating-linear-gradient(135deg,var(--red) 0 calc(var(--ew) * .045),var(--paper) 0 calc(var(--ew) * .07),var(--blue) 0 calc(var(--ew) * .115),var(--paper) 0 calc(var(--ew) * .14))}
+.env-paper{position:relative;height:100%;display:grid;align-content:end;gap:calc(var(--ew) * .012);padding:calc(var(--ew) * .05) calc(var(--ew) * .07) calc(var(--ew) * .06);
+  border-radius:calc(var(--ew) * .012);background:var(--paper);overflow:hidden}
+.stamp{position:absolute;top:calc(var(--ew) * .05);right:calc(var(--ew) * .055);width:calc(var(--ew) * .17);aspect-ratio:.82;display:grid;place-items:center;
+  background:var(--category,#b8acf0);color:#231d2b;font-size:calc(var(--ew) * .08);line-height:1;
+  -webkit-mask:radial-gradient(circle at 50% 50%,#000 calc(var(--ew) * .007),transparent calc(var(--ew) * .008)) 0 0/calc(var(--ew) * .0283) calc(var(--ew) * .0283) round,linear-gradient(#000 0 0) 50%/calc(100% - var(--ew) * .024) calc(100% - var(--ew) * .024) no-repeat;
+  mask:radial-gradient(circle at 50% 50%,#000 calc(var(--ew) * .007),transparent calc(var(--ew) * .008)) 0 0/calc(var(--ew) * .0283) calc(var(--ew) * .0283) round,linear-gradient(#000 0 0) 50%/calc(100% - var(--ew) * .024) calc(100% - var(--ew) * .024) no-repeat}
+.postmark{position:absolute;top:calc(var(--ew) * .07);right:calc(var(--ew) * .16);width:calc(var(--ew) * .17);aspect-ratio:1;border-radius:50%;
+  border:calc(var(--ew) * .006 + .5px) solid rgb(43 36 51 / .45);transform:rotate(-14deg)}
+.postmark::after{content:'';position:absolute;left:-60%;right:-90%;top:50%;height:calc(var(--ew) * .02);border-block:calc(var(--ew) * .005 + .4px) solid rgb(43 36 51 / .35);transform:translateY(-50%)}
+.env-from{font:600 calc(var(--ew) * .085)/1 var(--hand);color:var(--ink)}
+.env-from b{font-weight:700}
+.env-when{font:500 calc(var(--ew) * .064)/1.12 var(--sans);color:var(--ink);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.env-when b{font-weight:700}
+.env-cond{font:italic 400 calc(var(--ew) * .055)/1.15 var(--serif);color:var(--ink-soft);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gold .env-front{background:repeating-linear-gradient(135deg,#b9871f 0 calc(var(--ew) * .045),var(--paper) 0 calc(var(--ew) * .07),#e3bd5c 0 calc(var(--ew) * .115),var(--paper) 0 calc(var(--ew) * .14))}
+
+/* ——— Tally: a kraft luggage tag on the line ——— */
+.tally{position:absolute;z-index:20;left:0;top:0;will-change:transform;transform-origin:50% 0;display:grid;justify-items:center}
+.tally-pin{width:calc(var(--u) * .7 + 4px);height:calc(var(--u) * 2 + 10px);margin-bottom:calc(var(--u) * -.9 - 4px);position:relative;z-index:1;border-radius:2px;
+  background:linear-gradient(90deg,var(--wood-dark),var(--wood) 35%,#ecd2a6 50%,var(--wood) 65%,var(--wood-dark));box-shadow:0 2px 3px rgb(0 0 0 / .35)}
+.tally-card{display:grid;justify-items:center;gap:2px;padding:calc(var(--u) * .9 + 6px) calc(var(--u) * 1.1 + 8px) calc(var(--u) * .7 + 5px);border-radius:calc(var(--u) * .5 + 3px) calc(var(--u) * .5 + 3px) 4px 4px;
+  background:var(--kraft);color:var(--kraft-ink);box-shadow:0 3px 8px rgb(0 0 0 / .35);clip-path:polygon(18% 0,82% 0,100% 16%,100% 100%,0 100%,0 16%)}
+#sealed-count{font:700 calc(var(--u) * 1.15 + 8px)/1 var(--hand);white-space:nowrap}
+.more-count{font:600 calc(var(--u) * .62 + 6px)/1.1 var(--sans);white-space:nowrap}
+
+/* ——— Ready row: declared envelopes fanned along the bottom, waiting to be opened ——— */
+.ready-row{position:fixed;inset:0;pointer-events:none}
+.ready{list-style:none}
+.ready-item{--ew:var(--rw);position:absolute;left:var(--x);top:var(--y);width:var(--rw);margin:calc(var(--rw) / -3.1) 0 0 calc(var(--rw) / -2);
+  transform:rotate(var(--r));transition:left .7s cubic-bezier(.3,.7,.2,1),top .7s cubic-bezier(.3,.7,.2,1),transform .7s cubic-bezier(.3,.7,.2,1),opacity .4s}
+.ready-env{display:block;width:100%;border:0;background:none;color:inherit;font:inherit;text-align:inherit}
+.ready-item .env{box-shadow:0 0 0 calc(var(--u) * .25 + 1px) rgb(231 196 112 / .9);border-radius:calc(var(--ew) * .03)}
+.ready.dim .ready-item{opacity:.55}
+.ready-more{position:absolute;right:calc(var(--u) * 2 + 12px);bottom:calc(var(--u) * 1.2 + 8px);padding:2px 10px;border-radius:999px;background:var(--kraft);color:var(--kraft-ink);font:700 calc(var(--u) * 1 + 8px)/1.2 var(--hand)}
+
+/* Operator preview only: the console frame can open a ready envelope and close the letter. */
+.operator .ready-env{pointer-events:auto;cursor:pointer;border-radius:calc(var(--ew) * .03)}
+.operator .ready-env:hover:not(:disabled) .env,.operator .ready-env:focus-visible .env{translate:0 calc(var(--rw) * -.08)}
+.operator .ready-env .env{transition:translate .18s ease-out}
+.operator .ready-env:focus-visible{outline:3px solid var(--blue);outline-offset:4px}
+.operator .ready-env:disabled{cursor:default}
+.close-note{position:fixed;z-index:20;transform:translateX(-50%);pointer-events:auto;padding:6px 14px;border:2px solid var(--ink);border-radius:999px;background:var(--paper);color:var(--ink);
+  font:700 14px/1.2 var(--sans);cursor:pointer;box-shadow:0 2px 6px rgb(0 0 0 / .35)}
+.close-note:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.close-note:disabled{opacity:.6;cursor:default}
+
+/* Private notice for the viewer who wrote the note (Twitch overlay only). */
+.toast{position:fixed;z-index:30;right:16px;bottom:16px;max-width:min(360px,calc(100vw - 32px));display:grid;gap:2px;padding:10px 14px;border-radius:8px;background:var(--paper);color:var(--ink);box-shadow:0 4px 14px rgb(0 0 0 / .4)}
+.toast strong{font:600 16px/1.2 var(--serif)}
+.toast p{font-size:13px;color:var(--ink-soft)}
+
+/* ——— Reveal stage ——— */
+.reveal-stage{position:fixed;inset:0;pointer-events:none}
+.show{position:absolute;inset:0}
+.env3d{position:absolute;transform-style:preserve-3d}
+.env3d .env{filter:none;transform-style:preserve-3d}
+.env3d .face{position:absolute;inset:0;border-radius:calc(var(--ew) * .025);backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.env3d .face.back{transform:rotateY(180deg)}
+.env3d,.show>.ob-base{filter:drop-shadow(0 calc(var(--ew) * .04) calc(var(--ew) * .06) rgb(0 0 0 / .42))}
+
+/* Back of an envelope: base, pocket with V notch, top flap, wax seal. */
+.back{background:var(--paper-back);border-radius:calc(var(--ew) * .025)}
+.show>.ob-base,.show>.ob-pocket,.show>.ob-flap,.seal-box{position:absolute}
+.show.gold .ob-flap,.show.gold .ob-pocket{background:#f3e7c4}
+.ob-base{z-index:1;border-radius:calc(var(--ew) * .025);background:var(--paper-deep)}
+.ob-pocket{z-index:3;border-radius:0 0 calc(var(--ew) * .025) calc(var(--ew) * .025);background:var(--paper-back);clip-path:polygon(0 0,50% 54%,100% 0,100% 100%,0 100%)}
+.ob-pocket::after{content:'';position:absolute;inset:0;background:linear-gradient(to top right,transparent 49.6%,rgb(0 0 0 / .08) 50%,transparent 50.6%),linear-gradient(to top left,transparent 49.6%,rgb(0 0 0 / .08) 50%,transparent 50.6%)}
+.ob-flap{z-index:4;transform-origin:50% 0;background:var(--paper);clip-path:polygon(0 0,100% 0,50% 60%);border-radius:calc(var(--ew) * .025) calc(var(--ew) * .025) 0 0}
+.ob-flap::after{content:'';position:absolute;inset:0;background:linear-gradient(rgb(0 0 0 / 0) 40%,rgb(0 0 0 / .1))}
+.back .ob-flap,.back .ob-pocket{position:absolute;inset:0}
+
+.seal{position:absolute;z-index:5;left:50%;top:58%;width:calc(var(--ew) * .21);aspect-ratio:1;margin:calc(var(--ew) * -.105) 0 0 calc(var(--ew) * -.105)}
+.seal-half{position:absolute;inset:0;border-radius:47% 53% 50% 50% / 52% 48% 52% 48%;
+  background:radial-gradient(circle at 36% 32%,color-mix(in srgb,var(--wax) 55%,#fff) 0 8%,var(--wax) 36%,color-mix(in srgb,var(--wax) 70%,#000) 100%);
+  box-shadow:inset 0 0 0 calc(var(--ew) * .012) color-mix(in srgb,var(--wax) 82%,#000),0 calc(var(--ew) * .008) calc(var(--ew) * .012) rgb(0 0 0 / .35)}
+.seal-half.l{clip-path:polygon(0 0,52% 0,46% 30%,55% 52%,44% 74%,50% 100%,0 100%)}
+.seal-half.r{clip-path:polygon(52% 0,100% 0,100% 100%,50% 100%,44% 74%,55% 52%,46% 30%)}
+.seal-mark{position:absolute;inset:0;display:grid;place-items:center;font-size:calc(var(--ew) * .085);line-height:1;color:color-mix(in srgb,var(--wax) 55%,#000);text-shadow:0 1px 0 color-mix(in srgb,var(--wax) 60%,#fff)}
+
+/* ——— The letter ——— */
+.letter{position:absolute;z-index:2;width:var(--lw);display:grid;gap:calc(var(--lw) * .028);padding:calc(var(--lw) * .05) calc(var(--lw) * .06) calc(var(--lw) * .045);
+  border-radius:calc(var(--lw) * .008);background:var(--paper);color:var(--ink);transform-origin:50% 50%;
+  box-shadow:0 calc(var(--lw) * .02) calc(var(--lw) * .05) rgb(0 0 0 / .4),0 0 0 1px rgb(0 0 0 / .05)}
+.letter::before{content:'';position:absolute;left:calc(var(--lw) * .06);right:calc(var(--lw) * .06);top:calc(var(--lw) * .02);height:calc(var(--lw) * .012);border-radius:2px;background:var(--category,#b8acf0);opacity:.85}
+.letter::after{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;opacity:0;
+  background:linear-gradient(transparent 32.8%,rgb(0 0 0 / .12) 33.3%,rgb(255 255 255 / .5) 33.9%,transparent 35%,transparent 65.8%,rgb(0 0 0 / .12) 66.3%,rgb(255 255 255 / .5) 66.9%,transparent 68%)}
+.letter-head{display:flex;align-items:center;gap:calc(var(--lw) * .022)}
+.letter-icon{flex:none;width:calc(var(--lw) * .07);aspect-ratio:1;display:grid;place-items:center;border-radius:50%;background:var(--category,#b8acf0);color:#231d2b;font-size:calc(var(--lw) * .035)}
+.letter-head strong{display:block;font:600 calc(var(--lw) * .036)/1.1 var(--serif)}
+.reveal-subtitle{display:block;font:italic 400 calc(var(--lw) * .028)/1.2 var(--serif);color:var(--ink-soft)}
+.reveal-body{font:italic 400 calc(var(--lw) * .056)/1.32 var(--serif);color:var(--ink);overflow-wrap:anywhere}
+.reveal-footer{display:flex;justify-content:space-between;align-items:baseline;gap:calc(var(--lw) * .03);flex-wrap:wrap;padding-top:calc(var(--lw) * .02);border-top:1px dashed var(--fold)}
+.reveal-author{font:700 calc(var(--lw) * .05)/1 var(--hand);color:var(--ink)}
+.reveal-footer .opened-for{font:500 calc(var(--lw) * .026)/1.25 var(--sans);color:var(--ink-soft)}
+.verdict{position:absolute;right:calc(var(--lw) * .05);top:calc(var(--lw) * .05);padding:calc(var(--lw) * .008) calc(var(--lw) * .02);border:calc(var(--lw) * .005 + 1px) solid #0f6b4a;border-radius:4px;
+  background:var(--paper);color:#0f6b4a;font:800 calc(var(--lw) * .034)/1 var(--sans);letter-spacing:.06em;transform:rotate(-8deg)}
+.verdict.missed{border-color:var(--red);color:var(--red)}
+.never-note .reveal-footer .opened-for{color:var(--red);font-weight:700}
+
+/* Reel: a pinned paper slip after wrap-up. */
+.reel-card{position:absolute;left:50%;top:52%;width:min(var(--lw),88vw);transform:translate(-50%,-50%) rotate(-1.2deg);text-align:center;justify-items:center}
+.reel-count{font:700 calc(var(--lw) * .14)/1 var(--hand);color:var(--red)}
+.reel-card h2{font:600 calc(var(--lw) * .05)/1.15 var(--serif)}
+.reel-card .reveal-body{font-size:calc(var(--lw) * .038)}
+
+@media (prefers-reduced-motion:reduce){.ready-item,.operator .ready-env .env{transition:none}}

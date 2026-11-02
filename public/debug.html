@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Recognition debug · Sealed Notes</title>
+<link rel="stylesheet" href="/styles.css">
+<link rel="stylesheet" href="/debug/debug.css">
+<script type="module" src="/debug/debug.js"></script>
+</head>
+<body>
+<header class="topbar"><a class="brand" href="/"><span class="brand-mark"></span>Sealed Notes</a><nav class="nav"><a href="/console">Operator desk</a><span class="pill gold">Debug</span></nav></header>
+<main class="shell debug-shell">
+  <div class="page-heading">
+    <div><h1>Recognition debug</h1><p>Every frame the picture watcher kept, what it asked the model, and what came back.</p></div>
+  </div>
+  <p id="status" class="status space-bottom" role="status">Connecting to the debug recorder…</p>
+
+  <section id="recorder" class="card debug-recorder" aria-labelledby="recorder-title">
+    <div class="recorder-switch">
+      <div>
+        <h2 id="recorder-title">Debug recording</h2>
+        <p id="recorder-state" class="recorder-state">Checking…</p>
+      </div>
+      <button id="recorder-toggle" class="switch" type="button" role="switch" aria-checked="false" aria-labelledby="recorder-title" aria-describedby="recorder-help" disabled><span class="switch-track"><span class="switch-thumb"></span></span></button>
+    </div>
+    <p id="recorder-help" class="small muted">Off by default. While off, nothing is recorded. Turning it on keeps only frames captured from then on; earlier frames cannot be recovered. It does not start OBS capture or model requests. Saved debug copies stay on this machine and require operator sign-in.</p>
+    <p id="recorder-capacity" class="recorder-capacity" role="status" hidden></p>
+    <dl id="recorder-stats" class="recorder-stats">
+      <div><dt>Images kept</dt><dd id="stat-images">–</dd></div>
+      <div><dt>Storage</dt><dd id="stat-storage">–</dd></div>
+      <div><dt>Requests kept</dt><dd id="stat-requests">–</dd></div>
+      <div><dt>Decisions kept</dt><dd id="stat-decisions">–</dd></div>
+      <div><dt>Record storage</dt><dd id="stat-records">–</dd></div>
+      <div><dt>Frames recorded</dt><dd id="stat-total">–</dd></div>
+      <div><dt>Expired</dt><dd id="stat-expired">–</dd></div>
+      <div><dt>Dropped at capacity</dt><dd id="stat-dropped">–</dd></div>
+      <div><dt>Storage errors</dt><dd id="stat-errors">–</dd></div>
+    </dl>
+  </section>
+
+  <section class="debug-workbench" aria-label="Recorded frames and requests">
+    <div class="debug-toolbar">
+      <div class="segmented" role="radiogroup" aria-label="Show">
+        <button type="button" role="radio" aria-checked="true" data-view="frames">All frames</button>
+        <button type="button" role="radio" aria-checked="false" data-view="screen">Screening</button>
+        <button type="button" role="radio" aria-checked="false" data-view="review">Review</button>
+        <button type="button" role="radio" aria-checked="false" data-view="requests">Requests</button>
+      </div>
+      <div class="pager">
+        <button id="page-prev" class="small secondary" type="button" disabled>Newer</button>
+        <span id="page-label" class="small muted" aria-live="polite">–</span>
+        <button id="page-next" class="small secondary" type="button" disabled>Older</button>
+      </div>
+    </div>
+    <div class="debug-layout">
+      <div class="debug-list">
+        <p id="list-caption" class="small muted list-caption"></p>
+        <ol id="frame-grid" class="frame-grid" aria-label="Recorded frames, newest first"></ol>
+        <ol id="request-list" class="request-list" aria-label="Model requests, newest first" hidden></ol>
+      </div>
+      <aside id="inspector" class="inspector" aria-labelledby="inspector-title" tabindex="-1">
+        <h2 id="inspector-title" class="inspector-title">Inspector</h2>
+        <div id="inspector-body"><p class="inspector-empty">Choose a frame or a request to see the image, the model's answer and the exact frames it saw.</p></div>
+      </aside>
+    </div>
+  </section>
+</main>
+</body>
+</html>

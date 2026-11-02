@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Write a note · Sealed Notes</title>
+<link rel="stylesheet" href="./panel.css">
+<script src="./client-config.js"></script>
+<script type="module" src="./panel.js"></script>
+</head>
+<body data-extension="viewer" class="panel">
+<header class="topbar">
+  <span class="brand"><svg class="brand-seal" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2l2 1.6 2.5-.5 1.1 2.3 2.4.9-.1 2.6 1.7 2-1.4 2.2.6 2.5-2.3 1.2-.6 2.5-2.6.2-1.6 2-2.4-1-2.4 1-1.6-2-2.6-.2-.6-2.5-2.3-1.2.6-2.5L1.5 9.1l1.7-2-.1-2.6 2.4-.9 1.1-2.3 2.5.5z"/></svg>Sealed Notes</span>
+  <span id="sealed-count" class="sealed-count">0 sealed</span>
+</header>
+<main class="desk">
+  <p class="lede">Write it now. It opens on stream when the moment happens.</p>
+
+  <div class="tabs" role="tablist" aria-label="Your notes">
+    <button class="tab" id="compose-tab" type="button" role="tab" aria-selected="true" aria-controls="compose-view">Write a note</button>
+    <button class="tab" id="notes-tab" type="button" role="tab" aria-selected="false" aria-controls="notes-view" tabindex="-1">Your notes <span id="own-count" class="tab-count">0</span></button>
+    <button class="tab" id="watch-tab" type="button" role="tab" aria-selected="false" aria-controls="watch-view" tabindex="-1">Watch</button>
+  </div>
+
+  <div id="receipt" class="receipt" role="status" hidden></div>
+
+  <form id="compose-form" novalidate>
+    <div id="compose-view" class="compose" role="tabpanel" aria-labelledby="compose-tab">
+      <div class="letter">
+        <div class="sheet">
+          <label class="sheet-label" for="note-body">What would you like to say?</label>
+          <textarea id="note-body" maxlength="140" rows="4" placeholder="When this opens, I hope you know…" required aria-describedby="char-counter privacy-note"></textarea>
+          <div class="sheet-foot"><span id="privacy-note">Hidden until it opens. Never sent to chat.</span><span id="char-counter" class="char-counter" aria-live="polite">0 / 140</span></div>
+        </div>
+      </div>
+
+      <div class="routing">
+        <fieldset class="field envelopes">
+          <legend>Choose your envelope</legend>
+          <div id="categories" class="category-options"></div>
+        </fieldset>
+
+        <label class="field" for="moment"><span class="field-label">Open when…</span>
+          <select id="moment" name="moment_id" required aria-describedby="moment-hint"><option value="">Loading moments…</option></select>
+          <span id="moment-hint" class="hint error" role="status" hidden></span>
+        </label>
+
+        <details class="more">
+          <summary>Set a special condition</summary>
+          <div class="more-body condition-grid">
+            <label class="field" for="condition-type"><span class="field-label">Condition</span><select id="condition-type"><option value="moment">When the moment happens</option><option value="count">On occurrence number</option><option value="window">Before a stream minute</option><option value="after">After another moment</option></select></label>
+            <label class="field" for="condition-count"><span class="field-label">Occurrence number</span><input id="condition-count" type="number" min="1" max="100" placeholder="First"></label>
+            <label class="field" for="condition-window"><span class="field-label">Before minute</span><input id="condition-window" type="number" min="1" max="1440" placeholder="Any time"></label>
+            <label class="field" for="condition-after"><span class="field-label">Only after this moment</span><select id="condition-after"><option value="">Any moment</option></select></label>
+          </div>
+        </details>
+        <details id="condition-compiler" class="more">
+          <summary>Describe a condition (optional)</summary>
+          <div class="more-body">
+            <label class="field" for="condition-description"><span class="field-label">When would you like the note to open?</span><input id="condition-description" maxlength="240" placeholder="Open when we find the key" disabled></label>
+            <button id="compile-condition" class="quiet" type="button" disabled>Match a moment</button>
+            <p id="compile-status" class="hint" role="status">Choose a moment from the list. Condition matching is not available in this channel.</p>
+          </div>
+        </details>
+
+        <div class="postage">
+          <label class="field" for="payment"><span class="field-label">Seal with</span>
+            <select id="payment"><option value="free">Free note · TEST MODE — no real charge</option></select>
+          </label>
+          <p id="wallet" class="wallet">Loading your simulated wallet…</p>
+          <p class="test-mode">TEST MODE — no real charge</p>
+        </div>
+
+        <div class="identity">
+          <label class="check" for="show-name"><input id="show-name" type="checkbox"><span>Show my Twitch name</span></label>
+          <button id="share-name" type="button" class="quiet">Share identity</button>
+        </div>
+
+        <button id="seal-button" type="submit" class="seal">
+          <svg class="seal-wax" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2l2 1.6 2.5-.5 1.1 2.3 2.4.9-.1 2.6 1.7 2-1.4 2.2.6 2.5-2.3 1.2-.6 2.5-2.6.2-1.6 2-2.4-1-2.4 1-1.6-2-2.6-.2-.6-2.5-2.3-1.2.6-2.5L1.5 9.1l1.7-2-.1-2.6 2.4-.9 1.1-2.3 2.5.5z"/></svg>
+          <span>Seal this note</span>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <div id="notes-view" class="notes" role="tabpanel" aria-labelledby="notes-tab" hidden>
+    <ol id="own-notes" class="note-list"></ol>
+  </div>
+
+  <div id="watch-view" class="watch" role="tabpanel" aria-labelledby="watch-tab" hidden>
+    <p class="watch-note">The envelopes on stream right now. The streamer opens them when the moment comes.</p>
+    <div id="watch-stage" class="watch-stage"></div>
+  </div>
+
+  <p id="status" class="status" aria-live="polite">Connecting to your channel…</p>
+</main>
+</body>
+</html>

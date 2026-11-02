@@ -1,0 +1,47 @@
+/* Operator desk layout (console.html only). Stage top left; moments and events in a right column that
+   scrolls on its own; controls, queues and the rest below. Colours and type come from styles.css. */
+
+.console-page .shell{max-width:1760px;padding-top:16px}
+.console-page .topbar{max-width:1760px}
+
+/* A compact heading so the Stage is in the first screen. */
+.console-page .page-heading{align-items:center;margin-bottom:8px;gap:16px}
+.console-page .page-heading h1{font-size:clamp(24px,2.4vw,32px);line-height:1.2}
+.console-page .page-heading p{margin-top:2px;font-size:14px;line-height:20px}
+.console-page .console-stat{font-size:32px;line-height:40px}
+.console-page #status{margin-bottom:12px}
+
+/* ——— Workspace: Stage about two thirds, the event column one third ——— */
+.console-workspace{display:grid;grid-template-columns:minmax(0,2fr) minmax(340px,1fr);grid-template-rows:minmax(min(640px,78vh),auto);gap:16px;margin-bottom:16px}
+.console-stage{min-width:0}
+/* The column takes the Stage's height and scrolls inside it; a long event editor never pushes
+   the controls below further down. Size containment keeps its content out of the row height. */
+.console-side{contain:size;container:side / inline-size;overflow-y:auto;overscroll-behavior:contain;scrollbar-gutter:stable;
+  display:grid;gap:16px;align-content:start;padding:4px 6px 4px 4px;margin:-4px -6px -4px -4px;scroll-padding-block:24px;border-radius:var(--shape-lg)}
+.console-side:focus-visible{outline:3px solid var(--md-primary);outline-offset:2px}
+.console-side>.card{min-width:0}
+
+/* Inside the column, layout follows the column width, not the window. */
+@container side (max-width:760px){
+  .events-layout,.events-layout:has(>.event-editor:not([hidden])){grid-template-columns:minmax(0,1fr)}
+  .event-preset-pick,.field-grid{grid-template-columns:minmax(0,1fr)}
+  .event-row{flex-direction:column}
+}
+@container side (max-width:420px){
+  .card{padding:16px}
+  .event-preset{padding:16px}
+}
+
+/* ——— Below: controls first, full width; then cards in columns ——— */
+.console-lower{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,340px),1fr));gap:16px;align-items:start}
+.console-wide,.console-lower>.notice{grid-column:1/-1}
+
+/* ——— Narrow: Stage, then moments and events, then controls, then the rest ——— */
+@media(max-width:1023px){
+  .console-workspace{grid-template-columns:minmax(0,1fr);grid-template-rows:auto}
+  .console-side{contain:none;container-type:inline-size;overflow:visible;padding:0;margin:0}
+}
+@media(max-width:600px){
+  .console-page .shell{padding-left:16px;padding-right:16px}
+  .console-page .page-heading{display:flex;flex-wrap:wrap}
+}

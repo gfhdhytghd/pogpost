@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "events": [
+    {
+      "id": "first-death",
+      "label": "First death",
+      "description": "A clear game death or defeat screen is visible, with explicit on-screen death or defeat evidence. This is a suggestion for the operator to confirm. Low health, a menu, loading or an ambiguous animation does not establish death.",
+      "mode": "instant",
+      "min_confidence": 0.85,
+      "cooldown_s": 30,
+      "auto_confirm": false
+    },
+    {
+      "id": "ai-victory",
+      "label": "Victory screen",
+      "description": "A clear victory or completion screen is visible, with explicit victory evidence. This is a suggestion for the operator to confirm. Celebratory colors, a score change, a menu or a scene cut alone does not establish victory.",
+      "mode": "instant",
+      "min_confidence": 0.85,
+      "cooldown_s": 30,
+      "auto_confirm": false
+    },
+    {
+      "id": "ai-boss",
+      "label": "Boss defeated",
+      "description": "Explicit boss-defeated text is visible, or a continuous sequence clearly shows a boss encounter ending in the player's victory. This is a suggestion for the operator to confirm. A hidden health bar, loading, a menu or a camera cut alone is not evidence.",
+      "mode": "instant",
+      "min_confidence": 0.85,
+      "cooldown_s": 30,
+      "auto_confirm": false
+    }
+  ]
+}
